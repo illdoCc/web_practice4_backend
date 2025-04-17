@@ -6,6 +6,8 @@ from hashlib import sha256
 from pydantic import BaseModel
 from jose import jwt, JWTError
 from datetime import datetime
+from fastapi.middleware.cors import CORSMiddleware
+
 
 engine = create_engine("postgresql://postgres:123@localhost:8080/test")
 
@@ -23,6 +25,20 @@ def create_access_token(username):
 
 
 app = FastAPI()
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+
+
+
 class UserLogin(BaseModel):
     username: str
     # password: str
