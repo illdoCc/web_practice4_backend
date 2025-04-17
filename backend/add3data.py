@@ -3,7 +3,7 @@ from myUser import User
 from sqlalchemy import create_engine
 from hashlib import sha256
 
-engine = create_engine("postgresql://postgres:123@localhost:8080/test")  # 也可以換成你的資料庫 URI
+engine = create_engine("postgresql://postgres:123@localhost:8080/test")
 
 pwd = sha256('Anne'.encode('utf-8')).hexdigest()
 with engine.connect() as conn:
